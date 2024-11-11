@@ -55,7 +55,7 @@ public class RedLeft extends LinearOpMode {
     }
 
     public void runOpMode() {
-        Pose2d initialPose = new Pose2d(0,-65.8, Math.toRadians(90));
+        Pose2d initialPose = new Pose2d(-30,-65.8, Math.toRadians(90));
         MecanumDrive drive = new MecanumDrive(hardwareMap, initialPose);
 
         armMotor = hardwareMap.dcMotor.get("ARM");
@@ -70,7 +70,7 @@ public class RedLeft extends LinearOpMode {
 
         while (!isStarted() && !isStopRequested()) {
             // Wait for the DS start button to be touched.
-            armadjust(1, 1000, 0.6);
+            armadjust(1, 1100, 0.55);
             gripper1(0.95);
 
            /* if (currentGamepad2.x && !previousGamepad2.x) {
@@ -89,7 +89,7 @@ public class RedLeft extends LinearOpMode {
         sleep(20);
 
         TrajectoryActionBuilder tab1 = drive.actionBuilder(initialPose)
-                .lineToY(-31);
+                .splineToConstantHeading(new Vector2d(-6,-31),Math.toRadians(90));
 
 
         Action trajectoryActionCloseOut = tab1.fresh()
