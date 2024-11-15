@@ -151,7 +151,8 @@ public class autoTest extends LinearOpMode {
         int visionOutputPosition = 1;
 
         TrajectoryActionBuilder tab1 = drive.actionBuilder(initialPose)
-                .splineToConstantHeading(new Vector2d(-6,-31),Math.toRadians(90));
+                .splineToConstantHeading(new Vector2d(-6,-31),Math.toRadians(90))
+                .waitSeconds(2);
         TrajectoryActionBuilder tab2 = drive.actionBuilder(initialPose)
                 .splineToConstantHeading(new Vector2d(-6,-31),Math.toRadians(90));
         TrajectoryActionBuilder tab3 = drive.actionBuilder(initialPose)
@@ -190,6 +191,7 @@ public class autoTest extends LinearOpMode {
                 new SequentialAction(
                         ARM.ARMUp(),
                         gripper1.closegripper1(),
+                        wrist.wristUp(),
                         trajectoryActionChosen,
                         wrist.wristDown(),
                         trajectoryActionCloseOut
